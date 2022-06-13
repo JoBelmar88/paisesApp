@@ -9,19 +9,16 @@ import { Country } from '../interfaces/pais.interface';
 })
 export class PaisService {
 
-  private _apiKey: string = '8470000bef921efd8cc7630d431a9dd3';
+  //private _apiKey: string = '8470000bef921efd8cc7630d431a9dd3';
+  private _apiKey: string = 'bb36c701fe569ff68b6a034a110e0cd8';
   private _servicioUrl: string = 'http://api.countrylayer.com/v2';
-
-  /* 'http://api.countrylayer.com/v2/name/ecuador?access_key='; */
 
   constructor(private http: HttpClient) { }
 
-
-  buscarPaisPorNombre(termino: string): Observable<Country[]>{
+  buscarPais(termino: string, tipoBusqueda: string): Observable<Country[]>{
     const params = new HttpParams()
       .set('access_key', this._apiKey);
-
-      return this.http.get<Country[]>(`${this._servicioUrl}/name/${termino}?`, {params});
+    return this.http.get<Country[]>(`${this._servicioUrl}/${tipoBusqueda}/${termino}?`, {params});
         /* .pipe(
           catchError( err => of(['Se envía error controlado']))
         ); */

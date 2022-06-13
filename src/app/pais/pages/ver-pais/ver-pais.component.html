@@ -1,3 +1,49 @@
-<p>
-  ver-pais works!
-</p>
+<div 
+  class="alert alert-info"
+  *ngIf="!pais; else divPais">
+  Espere por favor ...
+</div>
+
+<ng-template #divPais>
+  <div class="row">
+    <div class="col-12">
+      <h1>País: <small>{{pais.name}}</small></h1>
+  
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- <div class="col-4">
+      <h3>Capital</h3>
+      <small>{{pais.capital}}</small>
+       <img [src]="pais.flag" alt="" class="small-flag | img-thumnail"> 
+    </div> -->
+    <div class="col">
+      <h3>Información</h3>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <strong>Capital: </strong>{{pais.capital}}
+        </li>
+        <li class="list-group-item">
+          <strong>Region: </strong>{{pais.region}}
+        </li>
+        <li class="list-group-item">
+          <strong>Código: </strong>{{pais.alpha2Code}}
+        </li>
+      </ul>  
+    </div>
+  </div>
+
+  <h3>Ortografías</h3>
+  <div class="row">
+    <div 
+      class="col"
+      *ngFor="let ortografia of pais.altSpellings">
+      <span class="badge bg-primary mr-1">{{ortografia}}</span>
+    </div>
+  </div>
+
+  <!-- [object Object] ( un objeto cuyo valor es un objeto ) representación de un objeto pasado por un string -->
+  <pre>{{pais | json}}</pre>
+</ng-template>
+
